@@ -79,32 +79,151 @@ function initMobileMenu() {
     });
 }
 
-// Hero Slideshow with Enhanced Touch Support
+// Modern Hero Section with Advanced Animations
 function initHeroSlideshow() {
     const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelectorAll('.indicator');
-    const prevBtn = document.querySelector('.hero-prev');
-    const nextBtn = document.querySelector('.hero-next');
-    const slideshow = document.querySelector('.hero-slideshow');
+    const hero = document.querySelector('.hero');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const rotatingTextItems = document.querySelectorAll('.text-item');
+    const ctaButtons = document.querySelectorAll('.cta-button');
     
     let currentSlide = 0;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
+    let currentTextIndex = 0;
     let autoSlideTimer;
     let isTransitioning = false;
+    let statsAnimated = false;
     
     if (!slides.length) return;
     
-    // Preload images for smoother transitions
-    slides.forEach(slide => {
-        const img = slide.querySelector('img');
-        if (img) {
-            const preloadImg = new Image();
-            preloadImg.src = img.src;
+    // Initialize components
+    initSlideshow();
+    initTextRotation();
+    initStatsAnimation();
+    initButtonEffects();
+    
+    function initSlideshow() {
+        // Preload images for smoother transitions
+        slides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (img) {
+                const preloadImg = new Image();
+                preloadImg.src = img.src;
+            }
+        });
+        
+        startAutoSlide();
+        showSlide(0);
+        
+        // Pause auto-slide on hover
+        if (hero) {
+            hero.addEventListener('mouseenter', stopAutoSlide);
+            hero.addEventListener('mouseleave', startAutoSlide);
         }
-    });
+    }
+    
+    function initTextRotation() {
+        if (rotatingTextItems.length === 0) return;
+        
+        rotatingTextItems[0].classList.add('active');
+        
+        setInterval(() => {
+            rotatingTextItems[currentTextIndex].classList.remove('active');
+            currentTextIndex = (currentTextIndex + 1) % rotatingTextItems.length;
+            
+            setTimeout(() => {
+                rotatingTextItems[currentTextIndex].classList.add('active');
+            }, 250);
+        }, 3000);
+    }
+    
+    function initStatsAnimation() {
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    statNumbers.forEach((stat, index) => {
+                        setTimeout(() => {
+                            animateStatNumber(stat);
+                        }, index * 200);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const statsContainer = document.querySelector('.hero-stats');
+        if (statsContainer) {
+            observer.observe(statsContainer);
+        }
+    }
+    
+    function animateStatNumber(element) {
+        const finalValue = element.textContent;
+        const number = parseInt(finalValue.replace(/\D/g, ''));
+        const suffix = finalValue.replace(/\d/g, '');
+        const duration = 2000;
+        const startTime = performance.now();
+        
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(number * easeOutCubic);
+            
+            element.textContent = current + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        };
+        
+        requestAnimationFrame(animate);
+    }
+    
+    function initButtonEffects() {
+        ctaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                createRippleEffect(e, button);
+            });
+            
+            button.addEventListener('mouseenter', () => {
+                const buttonText = button.querySelector('.button-text');
+                if (buttonText) {
+                    buttonText.style.transform = 'translateY(-2px)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                const buttonText = button.querySelector('.button-text');
+                if (buttonText) {
+                    buttonText.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    }
+    
+    function createRippleEffect(event, button) {
+        const ripple = button.querySelector('.button-ripple');
+        if (ripple) {
+            ripple.style.transform = 'scale(0)';
+            ripple.style.opacity = '1';
+            
+            setTimeout(() => {
+                ripple.style.transform = 'scale(1)';
+            }, 10);
+            
+            setTimeout(() => {
+                ripple.style.opacity = '0';
+            }, 600);
+        }
+    }
     
     function startAutoSlide() {
         stopAutoSlide();
@@ -122,160 +241,188 @@ function initHeroSlideshow() {
         }
     }
     
-    function showSlide(n) {
+    function showSlide(index) {
         if (isTransitioning) return;
         
         isTransitioning = true;
         
+        // Remove active classes
         slides.forEach(slide => slide.classList.remove('active'));
-        indicators.forEach(indicator => indicator.classList.remove('active'));
         
-        currentSlide = (n + slides.length) % slides.length;
+        // Add active classes
+        currentSlide = (index + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
-        if (indicators[currentSlide]) {
-            indicators[currentSlide].classList.add('active');
-        }
         
-        // Reset transitioning flag after animation
+        // Reset transitioning flag
         setTimeout(() => {
             isTransitioning = false;
-        }, 500);
+        }, 1500);
     }
     
     function nextSlide() {
         showSlide(currentSlide + 1);
     }
-    
-    function prevSlide() {
-        showSlide(currentSlide - 1);
-    }
-    
-    // Button controls
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            nextSlide();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-    }
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            prevSlide();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-    }
-    
-    // Indicator controls
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function() {
-            showSlide(index);
-            stopAutoSlide();
-            startAutoSlide();
-        });
-    });
-    
-    // Enhanced touch gestures
-    if (slideshow) {
-        slideshow.addEventListener('touchstart', function(e) {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-            stopAutoSlide();
-        }, { passive: true });
-        
-        slideshow.addEventListener('touchmove', function(e) {
-            // Prevent default only for horizontal swipes
-            const touchX = e.touches[0].clientX;
-            const touchY = e.touches[0].clientY;
-            const deltaX = Math.abs(touchX - touchStartX);
-            const deltaY = Math.abs(touchY - touchStartY);
-            
-            if (deltaX > deltaY) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        slideshow.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].clientX;
-            touchEndY = e.changedTouches[0].clientY;
-            handleSwipe();
-            startAutoSlide();
-        }, { passive: true });
-    }
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const deltaX = touchStartX - touchEndX;
-        const deltaY = Math.abs(touchStartY - touchEndY);
-        
-        // Only trigger swipe if horizontal movement is greater than vertical
-        if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > deltaY) {
-            if (deltaX > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-    
-    // Initialize
-    showSlide(0);
-    startAutoSlide();
-    
-    // Pause auto-slide on hover (desktop only)
-    if (slideshow && !isTouchDevice()) {
-        slideshow.addEventListener('mouseenter', stopAutoSlide);
-        slideshow.addEventListener('mouseleave', startAutoSlide);
-    }
 }
 
-// Portfolio Filtering - Enhanced
+// Modern Portfolio Filtering - Enhanced
 function initPortfolioFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const loadMoreBtn = document.querySelector('.load-more-btn');
+    const currentCount = document.querySelector('.current-count');
+    const totalCount = document.querySelector('.total-count');
     
-    if (!filterButtons.length || !portfolioItems.length) return;
+    if (!filterTabs.length || !portfolioCards.length) return;
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+    let visibleCount = 8; // Initially show 8 items
+    
+    // Initialize counters
+    updateCounters();
+    
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
             e.preventDefault();
             const filter = this.dataset.filter;
             
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter portfolio items with smooth animation
-            portfolioItems.forEach((item, index) => {
-                const category = item.dataset.category;
-                
-                if (filter === 'all' || category === filter) {
-                    item.style.display = 'block';
-                    
-                    // Stagger animation for better visual effect
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, index * 50);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
+            // Update active tab with smooth transition
+            filterTabs.forEach(btn => {
+                btn.classList.remove('active');
+                btn.querySelector('.tab-indicator').style.width = '0';
             });
+            
+            this.classList.add('active');
+            this.querySelector('.tab-indicator').style.width = '80%';
+            
+            // Add ripple effect
+            createRippleEffect(this, e);
+            
+            // Filter portfolio cards with staggered animation
+            filterPortfolioCards(filter);
+            
+            // Reset visible count and update counters
+            visibleCount = 8;
+            updateCounters();
         });
     });
+    
+    // Load more functionality
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            const hiddenCards = Array.from(portfolioCards).slice(visibleCount);
+            const cardsToShow = hiddenCards.slice(0, 4); // Show 4 more items
+            
+            cardsToShow.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.display = 'block';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px) scale(0.95)';
+                    
+                    requestAnimationFrame(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    });
+                }, index * 100);
+            });
+            
+            visibleCount += cardsToShow.length;
+            updateCounters();
+            
+            // Hide load more button if all items are visible
+            if (visibleCount >= portfolioCards.length) {
+                this.style.display = 'none';
+            }
+        });
+    }
+    
+    function filterPortfolioCards(filter) {
+        portfolioCards.forEach((card, index) => {
+            const category = card.dataset.category;
+            const shouldShow = filter === 'all' || category === filter;
+            
+            if (shouldShow) {
+                // Show with staggered animation
+                setTimeout(() => {
+                    card.style.display = 'block';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px) scale(0.95)';
+                    
+                    requestAnimationFrame(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    });
+                }, index * 50);
+            } else {
+                // Hide with fade animation
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(-20px) scale(0.95)';
+                
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
+    
+    function createRippleEffect(element, event) {
+        const ripple = document.createElement('span');
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+        
+        element.style.position = 'relative';
+        element.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    }
+    
+    function updateCounters() {
+        const activeFilter = document.querySelector('.filter-tab.active')?.dataset.filter || 'all';
+        const filteredCards = Array.from(portfolioCards).filter(card => {
+            const category = card.dataset.category;
+            return activeFilter === 'all' || category === activeFilter;
+        });
+        
+        if (currentCount) currentCount.textContent = Math.min(visibleCount, filteredCards.length);
+        if (totalCount) totalCount.textContent = filteredCards.length;
+        
+        // Show/hide load more button
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = visibleCount >= filteredCards.length ? 'none' : 'inline-flex';
+        }
+    }
+    
+    // Add CSS for ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
-// Enhanced Lightbox Functionality
+// Enhanced Modern Lightbox Functionality
 function initLightbox() {
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const expandBtns = document.querySelectorAll('.expand-btn');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-image');
     const lightboxClose = document.querySelector('.lightbox-close');
@@ -292,11 +439,11 @@ function initLightbox() {
     let touchEndY = 0;
     
     function getVisibleImages() {
-        return Array.from(portfolioItems)
-            .filter(item => window.getComputedStyle(item).display !== 'none')
-            .map(item => ({
-                src: item.querySelector('img').src,
-                alt: item.querySelector('img').alt || 'Portfolio Image'
+        return Array.from(portfolioCards)
+            .filter(card => window.getComputedStyle(card).display !== 'none')
+            .map(card => ({
+                src: card.querySelector('img').src,
+                alt: card.querySelector('img').alt || 'Portfolio Image'
             }));
     }
     
@@ -372,15 +519,28 @@ function initLightbox() {
         }
     }
     
-    // Event listeners
-    portfolioItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+    // Event listeners for expand buttons
+    expandBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
-            const img = this.querySelector('img');
+            e.stopPropagation();
+            const card = this.closest('.portfolio-card');
+            const img = card.querySelector('img');
             if (img) {
                 openLightbox(img.src);
             }
         });
+    });
+    
+    // Also allow clicking on card images
+    portfolioCards.forEach(card => {
+        const img = card.querySelector('img');
+        if (img) {
+            img.addEventListener('click', function(e) {
+                e.preventDefault();
+                openLightbox(this.src);
+            });
+        }
     });
     
     if (lightboxClose) {

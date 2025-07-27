@@ -6,6 +6,8 @@
     <title>Wed Aura Photography - Professional Photography Services</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Img/diaphragm_1.png">
+    <!-- Font Awesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 <body>
@@ -36,182 +38,347 @@
         </div>
     </header>
 
- <!-- Hero Section -->
+ <!-- Modern Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-slideshow">
-            <div class="slide active">
-                <img src="Img/IMG-20250704-WA0036.jpg" alt="Wedding Photography">
-                <div class="slide-content">
-                    <h1 class="hero-title">Capturing Life's Beautiful Moments</h1>
-                    <p>Professional photography with a focus on authentic emotions and timeless storytelling</p>
-                    <a href="#portfolio" class="btn btn--primary">View Portfolio</a>
+        <!-- Background Elements -->
+        <div class="hero-background">
+            <div class="hero-slideshow">
+                <div class="slide active">
+                    <img src="Img/IMG-20250704-WA0036.jpg" alt="Wedding Photography">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="slide">
+                    <img src="Img/IMG-20250704-WA0016.jpg" alt="Wedding Couple">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="slide">
+                    <img src="Img/IMG-20250705-WA0062.jpg" alt="Portrait Photography">
+                    <div class="slide-overlay"></div>
                 </div>
             </div>
-            <div class="slide">
-                <img src="IMG/IMG-20250704-WA0016.jpg" alt="Wedding Couple">
-                <div class="slide-content">
-                    <h2 class="hero-title">Wedding Photography</h2>
-                    <p>Documenting your special day with artistic vision and professional expertise</p>
-                    <a href="#services" class="btn btn--primary">Learn More</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="IMG/IMG-20250705-WA0062.jpg" alt="Portrait Photography">
-                <div class="slide-content">
-                    <h2 class="hero-title">Portrait Sessions</h2>
-                    <p>Professional portraits that capture your unique personality and style</p>
-                    <a href="#contact" class="btn btn--primary">Book Now</a>
-                </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-elements">
+                <div class="floating-circle circle-1"></div>
+                <div class="floating-circle circle-2"></div>
+                <div class="floating-circle circle-3"></div>
+                <div class="floating-square square-1"></div>
+                <div class="floating-square square-2"></div>
             </div>
         </div>
-        <div class="hero-controls">
-            <button class="hero-prev" aria-label="Previous slide">‹</button>
-            <button class="hero-next" aria-label="Next slide">›</button>
-        </div>
-        <div class="hero-indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
+
+        <!-- Hero Content -->
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- Animated Badge -->
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">Professional Photography</span>
+                </div>
+
+                <!-- Main Title with Typewriter Effect -->
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <span class="title-line">
+                            <span class="word-wrap">
+                                <span class="word" data-word="Capturing">Capturing</span>
+                            </span>
+                        </span>
+                        <span class="title-line">
+                            <span class="word-wrap">
+                                <span class="word highlight" data-word="Beautiful">Beautiful</span>
+                            </span>
+                        </span>
+                        <span class="title-line">
+                            <span class="word-wrap">
+                                <span class="word" data-word="Moments">Moments</span>
+                            </span>
+                        </span>
+                    </h1>
+                    
+                    <!-- Animated Subtitle -->
+                    <p class="hero-subtitle">
+                        <span class="subtitle-text">Creating timeless memories through</span>
+                        <span class="rotating-text">
+                            <span class="text-item active">artistic vision</span>
+                            <span class="text-item">authentic emotions</span>
+                            <span class="text-item">perfect moments</span>
+                            <span class="text-item">beautiful stories</span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-actions">
+                    <a href="#portfolio" class="cta-button primary">
+                        <span class="button-text">Explore Portfolio</span>
+                        <div class="button-bg"></div>
+                        <div class="button-ripple"></div>
+                    </a>
+                    <a href="#contact" class="cta-button secondary">
+                        <span class="button-text">Get In Touch</span>
+                        <div class="button-bg"></div>
+                        <div class="button-ripple"></div>
+                    </a>
+                </div>
+
+                <!-- Stats Counter -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1200">0</div>
+                        <div class="stat-label">Projects Done</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Modern Portfolio Section -->
     <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title">Portfolio</h2>
-            <div class="portfolio-filters">
-                <button class="filter-btn" data-filter="weddings">Weddings</button>
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="portraits">Casual</button>
-                <button class="filter-btn" data-filter="landscapes">Landscapes</button>
-                
-                <button class="filter-btn" data-filter="events">Events</button>
+        <div class="portfolio-hero">
+            <div class="container">
+                <div class="portfolio-intro">
+                    <h2 class="portfolio-title">
+                        <span class="title-accent">Our</span> Portfolio
+                    </h2>
+                    <p class="portfolio-subtitle">Discover our collection of captured moments, each telling a unique story</p>
+                </div>
             </div>
-            <div class="portfolio-grid">
-                <!-- Weddings -->
-                <div class="portfolio-item" data-category="weddings">
-                    <img src="Img/IMG-20250705-WA0046.jpg" alt="Wedding 1">
-                    <div class="portfolio-overlay">
-                        <h3>Wedding</h3>
-                        <p>Wedding Photography</p>
+        </div>
+        
+        <div class="container">
+            <!-- Modern Filter Navigation -->
+            <div class="portfolio-nav">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">
+                        <i class="fas fa-th"></i>
+                        <span>All Work</span>
+                        <div class="tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-filter="weddings">
+                        <i class="fas fa-heart"></i>
+                        <span>Weddings</span>
+                        <div class="tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-filter="portraits">
+                        <i class="fas fa-user"></i>
+                        <span>Portraits</span>
+                        <div class="tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-filter="landscapes">
+                        <i class="fas fa-mountain"></i>
+                        <span>Landscapes</span>
+                        <div class="tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-filter="events">
+                        <i class="fas fa-calendar"></i>
+                        <span>Events</span>
+                        <div class="tab-indicator"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modern Masonry Grid -->
+            <div class="portfolio-masonry">
+                <!-- Featured Large Item -->
+                <div class="portfolio-card featured" data-category="weddings">
+                    <div class="card-image">
+                        <img src="Img/IMG-20250705-WA0046.jpg" alt="Wedding Photography" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Wedding</span>
+                            <span class="date">2024</span>
+                        </div>
+                        <h3 class="card-title">Elegant Wedding Ceremony</h3>
+                        <p class="card-description">A beautiful celebration of love captured in timeless moments</p>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="weddings">
-                    <img src="Img/IMG-20250704-WA0052.jpg" alt="Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Wedding</h3>
-                        <p>Wedding Photography</p>
+
+                <!-- Standard Items -->
+                <div class="portfolio-card" data-category="weddings">
+                    <div class="card-image">
+                        <img src="Img/IMG-20250704-WA0052.jpg" alt="Wedding Portrait" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Wedding</span>
+                        </div>
+                        <h3 class="card-title">Wedding Portrait</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="weddings">
-                    <img src="Img/IMG-20250705-WA0072.jpg" alt="Wedding 3">
-                    <div class="portfolio-overlay">
-                        <h3>Wedding</h3>
-                        <p>Wedding Photography</p>
+
+                <div class="portfolio-card" data-category="portraits">
+                    <div class="card-image">
+                        <img src="Img/IMG-20250704-WA0030.jpg" alt="Portrait Session" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Portrait</span>
+                        </div>
+                        <h3 class="card-title">Portrait Session</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="weddings">
-                    <img src="img/IMG-20250704-WA0054.jpg" alt="Wedding 4">
-                    <div class="portfolio-overlay">
-                        <h3>Wedding</h3>
-                        <p>Wedding Photography</p>
+
+                <div class="portfolio-card wide" data-category="weddings">
+                    <div class="card-image">
+                        <img src="Img/IMG-20250705-WA0072.jpg" alt="Wedding Ceremony" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Wedding</span>
+                        </div>
+                        <h3 class="card-title">Wedding Ceremony</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <!-- Casual Shoots -->
-                <div class="portfolio-item" data-category="portraits">
-                    <img src="Img/IMG-20250704-WA0030.jpg" alt="Portrait 1">
-                    <div class="portfolio-overlay">
-                        <h3>Casual</h3>
-                        <p>Casual Shoots</p>
+
+                <div class="portfolio-card" data-category="portraits">
+                    <div class="card-image">
+                        <img src="Img/IMG-20250705-WA0062.jpg" alt="Casual Portrait" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Portrait</span>
+                        </div>
+                        <h3 class="card-title">Casual Portrait</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="portraits">
-                    <img src="Img/IMG-20250705-WA0062.jpg" alt="Portrait 1">
-                    <div class="portfolio-overlay">
-                        <h3>Casual</h3>
-                        <p>Casual Shoots</p>
+
+                <div class="portfolio-card tall" data-category="landscapes">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=1200&fit=crop" alt="Mountain Landscape" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Landscape</span>
+                        </div>
+                        <h3 class="card-title">Mountain Vista</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="portraits">
-                    <img src="Img/IMG-20250704-WA0030.jpg" alt="Portrait 1">
-                    <div class="portfolio-overlay">
-                        <h3>Casual</h3>
-                        <p>Casual Shoots</p>
+
+                <div class="portfolio-card" data-category="events">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Corporate Event" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Event</span>
+                        </div>
+                        <h3 class="card-title">Corporate Event</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="portraits">
-                    <img src="Img/IMG-20250704-WA0030.jpg" alt="Portrait 1">
-                    <div class="portfolio-overlay">
-                        <h3>Casual</h3>
-                        <p>Casual Shoots</p>
+
+                <div class="portfolio-card" data-category="landscapes">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=600&fit=crop" alt="Nature Photography" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="category">Landscape</span>
+                        </div>
+                        <h3 class="card-title">Nature Scene</h3>
+                        <div class="card-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="expand-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Landscapes -->
-                <div class="portfolio-item" data-category="landscapes">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Landscape 1">
-                    <div class="portfolio-overlay">
-                        <h3>Landscape</h3>
-                        <p>Nature Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="landscapes">
-                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=600&fit=crop" alt="Landscape 2">
-                    <div class="portfolio-overlay">
-                        <h3>Landscape</h3>
-                        <p>Nature Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="landscapes">
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop" alt="Landscape 3">
-                    <div class="portfolio-overlay">
-                        <h3>Landscape</h3>
-                        <p>Nature Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="landscapes">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop" alt="Landscape 4">
-                    <div class="portfolio-overlay">
-                        <h3>Landscape</h3>
-                        <p>Nature Photography</p>
-                    </div>
-                </div>
-                
-                <!-- Events -->
-                <div class="portfolio-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Event 1">
-                    <div class="portfolio-overlay">
-                        <h3>Event</h3>
-                        <p>Event Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop" alt="Event 2">
-                    <div class="portfolio-overlay">
-                        <h3>Event</h3>
-                        <p>Event Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=600&fit=crop" alt="Event 3">
-                    <div class="portfolio-overlay">
-                        <h3>Event</h3>
-                        <p>Event Photography</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop" alt="Event 4">
-                    <div class="portfolio-overlay">
-                        <h3>Event</h3>
-                        <p>Event Photography</p>
-                    </div>
+            </div>
+
+            <!-- Load More Section -->
+            <div class="portfolio-actions">
+                <button class="load-more-btn">
+                    <span>Load More Projects</span>
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+                <div class="portfolio-stats">
+                    <span class="stats-text">Showing <span class="current-count">8</span> of <span class="total-count">24</span> projects</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-<section id="about" class="about" data-aos="fade-up">
+<section id="about" class="about">
   <div class="container">
     <div class="about-content">
       <div class="about-text">
@@ -219,14 +386,17 @@
         <p>Professional photographer with over 8 years of experience capturing life's most precious moments. Specializing in natural light photography with a focus on authentic emotions and timeless storytelling.</p>
         <p>Every photo session is an opportunity to create something beautiful and meaningful. I believe in capturing genuine moments that tell your unique story.</p>
         <div class="social-links">
-          <a href="https://instagram.com/kolitha_udayanga_photography/" target="_blank" class="social-link">
-            <span class="icon">📸</span> Instagram
+          <a href="https://instagram.com/kolitha_udayanga_photography/" target="_blank" class="social-btn social-btn--instagram">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
           </a>
-          <a href="https://web.facebook.com/p/Kolitha-Udayanga-Photography-100085548885923/?_rdc=1&_rdr#" target="_blank" class="social-link">
-            <span class="icon">👥</span> Facebook
+          <a href="https://web.facebook.com/p/Kolitha-Udayanga-Photography-100085548885923/?_rdc=1&_rdr#" target="_blank" class="social-btn social-btn--facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
           </a>
-          <a href="https://wa.me/+94762554113" target="_blank" class="social-link">
-            <span class="icon">💬</span> WhatsApp
+          <a href="https://wa.me/+94762554113" target="_blank" class="social-btn social-btn--whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
           </a>
         </div>
       </div>
@@ -394,9 +564,18 @@
                 <div class="footer-social">
                     <h4>Follow Me</h4>
                     <div class="social-links">
-                        <a href="https://instagram.com/kolitha_udayanga_photography/" target="_blank" class="social-link">Instagram</a>
-                        <a href="https://web.facebook.com/p/Kolitha-Udayanga-Photography-100085548885923/?_rdc=1&_rdr#" target="_blank" class="social-link">Facebook</a>
-                        <a href="https://wa.me/94762554113?text=Hello!%20I'm%20interested%20in%20your%20photography%20services.%20Could%20you%20please%20share%20more%20details%3F " target="_blank" class="social-link">Whatsapp</a>
+                        <a href="https://instagram.com/kolitha_udayanga_photography/" target="_blank" class="social-btn social-btn--instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://web.facebook.com/p/Kolitha-Udayanga-Photography-100085548885923/?_rdc=1&_rdr#" target="_blank" class="social-btn social-btn--facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://wa.me/94762554113?text=Hello!%20I'm%20interested%20in%20your%20photography%20services.%20Could%20you%20please%20share%20more%20details%3F " target="_blank" class="social-btn social-btn--whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
                     </div>
                 </div>
                 
